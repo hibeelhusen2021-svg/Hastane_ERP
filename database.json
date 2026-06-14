@@ -1,0 +1,146 @@
+{
+  "hospital": {
+    "name": "CareFlow Enterprise Hospital",
+    "totalBeds": 50
+  },
+  "doctors": [
+    { "id": "doc_1", "name": "Prof. Dr. Ali Yılmaz", "specialty": "Kardiyoloji" },
+    { "id": "doc_2", "name": "Doç. Dr. Ayşe Kaya", "specialty": "Dahiliye" },
+    { "id": "doc_3", "name": "Dr. Öğr. Üyesi Murat Demir", "specialty": "Nöroloji" },
+    { "id": "doc_4", "name": "Uzm. Dr. Canan Çetin", "specialty": "Acil Servis" }
+  ],
+  "patients": [
+    {
+      "id": "pat_101",
+      "name": "Mehmet Aslan",
+      "complaint": "Akut göğüs ağrısı ve yüksek tansiyon sebebiyle koroner yoğun bakım takibi.",
+      "doctorId": "doc_1",
+      "roomNo": "K-201",
+      "status": "yatis-verildi",
+      "recoveryProgress": 35
+    },
+    {
+      "id": "pat_102",
+      "name": "Zeynep Yurt",
+      "complaint": "Kronik tip-2 diyabet regülasyonu ve genel metabolik check-up rutin muayenesi.",
+      "doctorId": "doc_2",
+      "roomNo": "-",
+      "status": "muayenede",
+      "recoveryProgress": 60
+    },
+    {
+      "id": "pat_103",
+      "name": "Ahmet Öztürk",
+      "complaint": "Şiddetli migren atağı ve vertigo şikayetiyle nörolojik gözlem.",
+      "doctorId": "doc_3",
+      "roomNo": "N-104",
+      "status": "yatis-verildi",
+      "recoveryProgress": 20
+    },
+    {
+      "id": "pat_104",
+      "name": "Fatma Demir",
+      "complaint": "Mevsimsel enfeksiyona bağlı yüksek ateş ve dehidrasyon nedeniyle serum desteği.",
+      "doctorId": "doc_2",
+      "roomNo": "D-305",
+      "status": "yatis-verildi",
+      "recoveryProgress": 75
+    },
+    {
+      "id": "pat_105",
+      "name": "Burak Yılmaz",
+      "complaint": "Ev kazası sonucu hafif travma ve pansuman takipli genel acil kontrolü.",
+      "doctorId": "doc_4",
+      "roomNo": "-",
+      "status": "muayenede",
+      "recoveryProgress": 90
+    },
+    {
+      "id": "pat_106",
+      "name": "Selin Gürsoy",
+      "complaint": "Aritmi (ritim bozukluğu) ve çarpıntı şikayetiyle holter cihazı takibi.",
+      "doctorId": "doc_1",
+      "roomNo": "K-203",
+      "status": "yatis-verildi",
+      "recoveryProgress": 45
+    },
+    {
+      "id": "pat_107",
+      "name": "Caner Yıldız",
+      "complaint": "Akut solunum yolu enfeksiyonu, kronik astım alevlenmesi.",
+      "doctorId": "doc_2",
+      "roomNo": "-",
+      "status": "muayenede",
+      "recoveryProgress": 50
+    },
+    {
+      "id": "pat_108",
+      "name": "Hülya Avcı",
+      "complaint": "Geçici iskemik atak şüphesiyle sol kolda uyuşma ve nörolojik tetkikler.",
+      "doctorId": "doc_3",
+      "roomNo": "N-108",
+      "status": "yatis-verildi",
+      "recoveryProgress": 15
+    },
+    {
+      "id": "pat_109",
+      "name": "Mustafa Koç",
+      "complaint": "Hipertansif kriz senaryosu, acil stabilizasyon protokolü.",
+      "doctorId": "doc_4",
+      "roomNo": "-",
+      "status": "muayenede",
+      "recoveryProgress": 80
+    },
+    {
+      "id": "pat_110",
+      "name": "Büşra Kaya",
+      "complaint": "Demir eksikliği anemisi ve derin halsizlik sebebiyle dahiliye konsültasyonu.",
+      "doctorId": "doc_2",
+      "roomNo": "D-302",
+      "status": "yatis-verildi",
+      "recoveryProgress": 40
+    }
+  ],
+  "medicalLogs": [
+    {
+      "id": "mlog_1",
+      "date": "10.06.2026",
+      "patientId": "pat_101",
+      "doctorId": "doc_1",
+      "progressInc": 15,
+      "description": "EKG çekildi, hastaya antihipertansif infüzyon başlandı. Vital bulgular stabilize ediliyor."
+    },
+    {
+      "id": "mlog_2",
+      "date": "11.06.2026",
+      "patientId": "pat_103",
+      "doctorId": "doc_3",
+      "progressInc": 10,
+      "description": "Nörolojik muayene yapıldı. Analjezik protokolü uygulandı, ışığa hassasiyet için izole odaya alındı."
+    },
+    {
+      "id": "mlog_3",
+      "date": "12.06.2026",
+      "patientId": "pat_106",
+      "doctorId": "doc_1",
+      "progressInc": 20,
+      "description": "Beta-bloker dozajı ayarlandı. Çarpıntı sıklığı azaldı, holter verileri analiz ediliyor."
+    },
+    {
+      "id": "mlog_4",
+      "date": "12.06.2026",
+      "patientId": "pat_108",
+      "doctorId": "doc_3",
+      "progressInc": 30,
+      "description": "Beyin MR ve BT sonuçları temiz çıktı. Uyuşma hissi geriledi, antiagregan tedaviye başlandı."
+    },
+    {
+      "id": "mlog_5",
+      "date": "12.06.2026",
+      "patientId": "pat_110",
+      "doctorId": "doc_2",
+      "progressInc": 25,
+      "description": "IV Demir sükroz infüzyonu uygulandı. Hastanın hemoglobin takibi yapılıyor, vital bulgular normal."
+    }
+  ]
+}
