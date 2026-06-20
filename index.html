@@ -3,233 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CareFlow ERP - Enterprise Management Automation</title>
+    <title>MindCare ERP & CPM Suite</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div class="app-container">
         <aside class="sidebar">
-            <div class="brand">
-                <i data-lucide="activity" class="brand-icon"></i>
-                <h2>CareFlow <span>ERP</span></h2>
+            <div class="logo">
+                <h2>🧠 MindCare <span>SaaS v1.1</span></h2>
             </div>
-            
-            <nav class="nav-menu">
-                <div class="nav-item active" data-tab="dashboard">
-                    <i data-lucide="layout-dashboard"></i> <span>Klinik Özet Panel</span>
-                </div>
-                <div class="nav-item" data-tab="patients">
-                    <i data-lucide="users"></i> <span>Hasta Kabul & Listesi</span>
-                </div>
-                <div class="nav-item" data-tab="medical-logs">
-                    <i data-lucide="history"></i> <span>Müdahale Günlüğü</span>
-                </div>
+            <nav class="main-nav">
+                <div class="menu-label">KLİNİK YÖNETİMİ</div>
+                <button class="nav-item active" data-tab="reports-view">📊 Raporlama & KPI</button>
+                <button class="nav-item" data-tab="clients-view">👥 Danışan Portföyü</button>
+                <button class="nav-item" data-tab="rooms-view">🏢 Matris Oda Planı</button>
+                <button class="nav-item" data-tab="specializations-view">🎯 Tıbbi Kategoriler</button>
                 
-                <div class="nav-section-title" style="font-size: 0.75rem; color: #64748b; margin: 20px 0 5px 15px; font-weight: bold; text-transform: uppercase;">Yönetim & Planlama</div>
+                <div class="menu-label">GİRİŞİMCİLİK & CPM ANALİZİ</div>
+                <button class="nav-item" data-tab="proj-card-view">🚀 Girişim Fizibilitesi</button>
+                <button class="nav-item" data-tab="proj-tasks-view">⏱️ Kritik Yol (CPM) Modeli</button>
+                <button class="nav-item" data-tab="proj-team-view">💻 İnsan Kaynakları (HR)</button>
+                <button class="nav-item" data-tab="proj-budget-view">💰 Sermaye & Nakit Akışı</button>
                 
-                <div class="nav-item" data-tab="project-management">
-                    <i data-lucide="trello" style="color: #f59e0b;"></i> <span style="color: #f59e0b; font-weight: 600;">Proje Yönetimi & Gantt</span>
-                </div>
-                <div class="nav-item" data-tab="finance-manager">
-                    <i data-lucide="wallet" style="color: #10b981;"></i> <span style="color: #10b981; font-weight: 600;">Finans & Bütçe</span>
-                </div>
+                <div class="menu-label">SİSTEM MİMARİSİ</div>
+                <button class="nav-item" data-tab="sql-editor-view">🗄️ İlişkisel Veritabanı</button>
             </nav>
-
             <div class="sidebar-footer">
-                <p>Kullanıcı: <strong>Kraliçe</strong></p>
-                <small>Statü: Sistem Mimarı (Zeka Küpü)</small>
+                <div>MindCare Enterprise Inc.</div>
+                <strong>Finansal Yıl: 2026</strong>
             </div>
         </aside>
 
         <main class="main-content">
-            <header class="top-header">
-                <h1 id="current-tab-title">Klinik Özet Panel</h1>
-                <div class="header-actions">
-                    <button id="btn-add-patient" class="btn btn-primary"><i data-lucide="user-plus"></i> Yeni Hasta Kabul</button>
-                    <button id="btn-add-log" class="btn btn-success"><i data-lucide="plus-circle"></i> Tıbbi Müdahale Ekle</button>
+            <header class="main-header">
+                <div class="header-left">
+                    <h1 id="page-title">SaaS Kontrol Paneli</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-profile">🛡️ Rol: Kurucu Ortak (Girişimci)</div>
                 </div>
             </header>
 
-            <div class="tab-wrapper">
-                
-                <section id="dashboard" class="tab-content active">
-                    <div id="dashboard-kpis" class="kpi-grid">
-                        </div>
-
-                    <div class="charts-grid">
-                        <div class="chart-card">
-                            <h3><i data-lucide="trending-up" style="color:var(--accent-blue); display:inline; vertical-align:middle; margin-right:8px;"></i> Hasta Giriş Trend Analizi (Son 7 Gün)</h3>
-                            <div class="chart-container"><canvas id="trend-chart"></canvas></div>
-                        </div>
-                        <div class="chart-card">
-                            <h3><i data-lucide="pie-chart" style="color:var(--accent-cyan); display:inline; vertical-align:middle; margin-right:8px;"></i> Poliklinik Dağılım Endeksi</h3>
-                            <div class="chart-container"><canvas id="specialty-chart"></canvas></div>
-                        </div>
+            <div id="reports-view" class="view-panel active">
+                <div id="dashboard-kpis" class="kpi-grid"></div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                    <div class="card">
+                        <h3>📈 Hizmet Dağılım Hacmi</h3>
+                        <div id="seans-turu-container"></div>
                     </div>
-                </section>
-
-                <section id="patients" class="tab-content">
-                    <div class="table-card">
-                        <table class="custom-table">
-                            <thead>
-                                <tr>
-                                    <th>Hasta Protokol Bilgisi / Şikayet</th>
-                                    <th>Atanmış Hekim / Branş</th>
-                                    <th>Oda No</th>
-                                    <th>Mevcut Durum</th>
-                                    <th>Klinik İyileşme Oranı</th>
-                                </tr>
-                            </thead>
-                            <tbody id="patient-table-body">
-                                </tbody>
-                        </table>
-                    </div>
-                </section>
-
-                <section id="medical-logs" class="tab-content">
-                    <div id="log-timeline-container" class="timeline-container">
-                        </div>
-                </section>
-
-                <section id="project-management" class="tab-content">
-                    <div style="background: #ffffff; padding: 24px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column; gap: 24px;">
-                        
-                        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f5f9; padding-bottom: 15px;">
-                            <div>
-                                <h2 style="font-size: 1.25rem; color: #1e293b; font-weight: 700;">Agile Proje Takibi & Zaman Planlaması</h2>
-                                <p style="font-size: 0.85rem; color: #64748b;">Prompt Girdisi: "CareFlow ERP Modüler Hastane Otomasyonu Mimari Tasarımı"</p>
-                            </div>
-                            <div style="text-align: right;">
-                                <span style="font-size: 0.85rem; font-weight: bold; color: #f59e0b;">Genel Tamamlanma Oranı</span>
-                                <div style="display: flex; align-items: center; gap: 10px; margin-top: 4px;">
-                                    <div style="width: 150px; height: 10px; background: #e2e8f0; border-radius: 5px; overflow: hidden;">
-                                        <div style="width: 85%; height: 100%; background: #f59e0b; border-radius: 5px;"></div>
-                                    </div>
-                                    <span style="font-weight: 800; color: #1e293b; font-size: 0.9rem;">%85</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px;">
-                            <div style="background: #fef2f2; border: 1px solid #fee2e2; padding: 15px; border-radius: 10px;">
-                                <h4 style="color: #991b1b; font-size: 0.85rem; font-weight: bold;"><i data-lucide="alert-triangle" style="width:14px; display:inline; vertical-align:middle;"></i> KRİTİK YOL (Critical Path)</h4>
-                                <p style="font-size: 0.75rem; color: #7f1d1d; margin-top: 5px; line-height: 1.4;">Veritabanı İlişkisel Şeması ➔ Hasta Kabul Motoru Kodlaması ➔ Test Dağıtımı. (Gecikmesi imkansız olan ana aks.)</p>
-                            </div>
-                            <div style="background: #eff6ff; border: 1px solid #dbeafe; padding: 15px; border-radius: 10px;">
-                                <h4 style="color: #1e40af; font-size: 0.85rem; font-weight: bold;"><i data-lucide="clock" style="width:14px; display:inline; vertical-align:middle;"></i> BOLLUK SÜRESİ (Slack Time)</h4>
-                                <p style="font-size: 0.75rem; color: #1e3a8a; margin-top: 5px; line-height: 1.4;">UI Arayüz Renk Skalası ve İkon Revizyonu: <strong>3 Gün Esnek</strong>. Proje teslim tarihini etkilemez.</p>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h3 style="font-size: 1rem; color: #0f172a; margin-bottom: 12px; font-weight: 600;"><i data-lucide="calendar-days" style="display:inline; width:16px; color:#f59e0b; vertical-align:middle;"></i> Proje Görev Dağılımı (Zamana Göre Gantt Şeması)</h3>
-                            <div style="border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; font-size: 0.8rem;">
-                                <div style="display: grid; grid-template-columns: 200px 1fr; background: #f8fafc; font-weight: bold; border-bottom: 1px solid #e2e8f0; padding: 10px;">
-                                    <div>Görev Tanımı / Sorumlu Ekip</div>
-                                    <div style="display: flex; justify-content: space-between; padding-left: 20px; color: #64748b;"><span>01 Haz</span><span>05 Haz</span><span>10 Haz</span><span>15 Haz</span><span>20 Haz</span></div>
-                                </div>
-                                <div style="display: grid; grid-template-columns: 200px 1fr; border-bottom: 1px solid #f1f5f9; padding: 12px 10px; align-items: center;">
-                                    <div><strong>Proje İhtiyaç Analizi</strong><br><small style="color:#64748b;">Sistem Analisti</small></div>
-                                    <div style="padding-left: 20px;"><div style="width: 25%; height: 14px; background: #3b82f6; border-radius: 4px; color: white; text-align: center; font-size: 0.7rem; line-height: 14px; font-weight: bold;">Tamamlandı</div></div>
-                                </div>
-                                <div style="display: grid; grid-template-columns: 200px 1fr; border-bottom: 1px solid #f1f5f9; padding: 12px 10px; align-items: center;">
-                                    <div><strong>Veritabanı ER Modelleme (🚨)</strong><br><small style="color:#64748b;">Veritabanı Mimarı</small></div>
-                                    <div style="padding-left: 20px;"><div style="width: 40%; margin-left: 20%; height: 14px; background: #ef4444; border-radius: 4px; color: white; text-align: center; font-size: 0.7rem; line-height: 14px; font-weight: bold;">Kritik Yol</div></div>
-                                </div>
-                                <div style="display: grid; grid-template-columns: 200px 1fr; border-bottom: 1px solid #f1f5f9; padding: 12px 10px; align-items: center;">
-                                    <div><strong>Arayüz & Dashboard Kodlama</strong><br><small style="color:#64748b;">Frontend Developer</small></div>
-                                    <div style="padding-left: 20px;"><div style="width: 35%; margin-left: 50%; height: 14px; background: #f59e0b; border-radius: 4px; color: white; text-align: center; font-size: 0.7rem; line-height: 14px; font-weight: bold;">Devam Ediyor</div></div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </section>
-
-                <section id="finance-manager" class="tab-content">
-                    <div style="background: #ffffff; padding: 24px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column; gap: 24px;">
-                        
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
-                            <div style="background: #f0fdf4; border-left: 5px solid #10b981; padding: 15px; border-radius: 8px;">
-                                <span style="font-size: 0.8rem; color: #16a34a; font-weight: bold;">Toplam Klinik Muayene Geliri</span>
-                                <h3 style="font-size: 1.4rem; color: #14532d; margin-top: 5px; font-weight: bold;" id="total-hospital-income">0 ₺</h3>
-                            </div>
-                            <div style="background: #fef2f2; border-left: 5px solid #ef4444; padding: 15px; border-radius: 8px;">
-                                <span style="font-size: 0.8rem; color: #dc2626; font-weight: bold;">Sabit Tıbbi & Operasyonel Giderler</span>
-                                <h3 style="font-size: 1.4rem; color: #7f1d1d; margin-top: 5px; font-weight: bold;">42,500 ₺</h3>
-                            </div>
-                            <div style="background: #ecfeff; border-left: 5px solid #06b6d4; padding: 15px; border-radius: 8px;">
-                                <span style="font-size: 0.8rem; color: #0891b2; font-weight: bold;">Net Klinik Dönem Kârı</span>
-                                <h3 style="font-size: 1.4rem; color: #164e63; margin-top: 5px; font-weight: bold;" id="net-hospital-profit">0 ₺</h3>
-                            </div>
-                        </div>
-
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 10px;">
-                            <div style="border: 1px solid #e2e8f0; padding: 15px; border-radius: 12px;">
-                                <h3 style="font-size: 0.95rem; color: #1e293b; margin-bottom: 15px; font-weight: 600;"><i data-lucide="pie-chart" style="width:14px; display:inline; margin-right:5px; color:#10b981;"></i> Hastane Bütçe Dağılım Analizi</h3>
-                                <div style="height: 200px; position: relative;"><canvas id="finance-pie-chart"></canvas></div>
-                            </div>
-                            
-                            <div style="border: 1px solid #e2e8f0; padding: 15px; border-radius: 12px;">
-                                <h3 style="font-size: 0.95rem; color: #1e293b; margin-bottom: 12px; font-weight: 600;"><i data-lucide="list-checks" style="width:14px; display:inline; margin-right:5px; color:#06b6d4;"></i> Detaylı Klinik Gider Kalemleri Raporu</h3>
-                                <div style="font-size: 0.8rem; display:flex; flex-direction:column; gap:8px;">
-                                    <div style="display:flex; justify-content:space-between; border-bottom:1px solid #f1f5f9; padding-bottom:4px;"><span>🧪 Tıbbi Sarf Malzemeleri & Laboratuvar Kitleri</span><strong style="color:#ef4444;">12,500 ₺</strong></div>
-                                    <div style="display:flex; justify-content:space-between; border-bottom:1px solid #f1f5f9; padding-bottom:4px;"><span>💉 Klinik İlaç Tedarik ve Lojistik</span><strong style="color:#ef4444;">15,000 ₺</strong></div>
-                                    <div style="display:flex; justify-content:space-between; border-bottom:1px solid #f1f5f9; padding-bottom:4px;"><span>🏢 Hastane Demirbaş Bakımı & Enerji</span><strong style="color:#ef4444;">15,000 ₺</strong></div>
-                                    <div style="display:flex; justify-content:space-between; color:#10b981; font-weight:bold; margin-top:5px; background:#f0fdf4; padding:6px; border-radius:4px;"><span>Mali Dönem Durumu:</span><span>DENGELİ</span></div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </section>
-
-            </div>
-        </main>
-    </div>
-
-    <div id="patient-modal" class="modal-overlay">
-        <div class="modal-box">
-            <div class="modal-header">
-                <h2>Yeni Hasta Kayıt Protokolü</h2>
-                <button id="btn-close-modal" class="close-txt">&times;</button>
-            </div>
-            <form id="patient-form">
-                <div class="form-group"><label>Hasta Adı Soyadı</label><input type="text" id="p-name" required placeholder="Örn: Hakan Polat"></div>
-                <div class="form-group"><label>Klinik Başvuru Şikayeti</label><textarea id="p-complaint" required placeholder="Şikayet detayı..."></textarea></div>
-                <div class="form-group"><label>Sorumlu Hekim Ataması</label><select id="p-doctor"></select></div>
-                <div class="form-row">
-                    <div class="form-group"><label>Tahsis Edilecek Oda</label><input type="text" id="p-room" required placeholder="Örn: K-104"></div>
-                    <div class="form-group"><label>Kabul Durumu</label>
-                        <select id="p-status">
-                            <option value="muayenede">Poliklinik Muayene</option>
-                            <option value="yatis-verildi">Klinik Yatış Verildi</option>
-                        </select>
+                    <div class="card">
+                        <h3>💳 Finansal Tahsilat Kanalları</h3>
+                        <div id="odeme-yontemleri-container"></div>
                     </div>
                 </div>
-                <div class="modal-footer"><button type="button" id="btn-cancel-modal" class="btn btn-secondary">İptal</button><button type="submit" class="btn btn-primary">Protokolü Başlat</button></div>
-            </form>
-        </div>
-    </div>
-
-    <div id="log-modal" class="modal-overlay">
-        <div class="modal-box">
-            <div class="modal-header">
-                <h2>Tıbbi Müdahale Günlüğü Ekle</h2>
-                <button id="btn-close-log-modal" class="close-txt">&times;</button>
             </div>
-            <form id="log-form">
-                <div class="form-group"><label>Müdahale Yapılacak Hasta</label><select id="l-patient"></select></div>
-                <div class="form-group"><label>Klinik İyileşme Endeks Oranı (+%)</label><select id="l-progress"><option value="10">%10 İyileşme</option><option value="20">%20 İyileşme</option><option value="30">%30 İyileşme</option><option value="50">%50 İyileşme</option></select></div>
-                <div class="form-group"><label>Uygulanan Tedavi / Enjeksiyon / Operasyon Açıklaması</label><textarea id="l-desc" required placeholder="Yapılan klinik müdahale detayları..."></textarea></div>
-                <div class="modal-footer"><button type="button" id="btn-cancel-log-modal" class="btn btn-secondary">Vazgeç</button><button type="submit" class="btn btn-success">Müdahaleyi Kaydet</button></div>
-            </form>
-        </div>
-    </div>
 
+            <div id="clients-view" class="view-panel">
+                <div class="card">
+                    <h3>👥 Sistemde Kayıtlı Müşteri/Danışan Portföyü</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Müşteri Ad Soyad</th>
+                                <th>GSM No</th>
+                                <th>E-Posta Adresi</th>
+                                <th>Hizmet Şubesi</th>
+                                <th>KVKK Uyumluluk</th>
+                                <th>Kayıt Tarihi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="clients-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="rooms-view" class="view-panel">
+                <div class="card">
+                    <h3>🏢 Klinik Altyapı Kaynak Dağılım Grafiği</h3>
+                    <div id="rooms-grid-container" class="rooms-grid"></div>
+                </div>
+            </div>
+
+            <div id="specializations-view" class="view-panel">
+                <div class="card">
+                    <h3>🎯 Sağlık ve Danışmanlık Kategorileri</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Kategori Kodu</th>
+                                <th>Yerel Adı (TR)</th>
+                                <th>Uluslararası Adı (EN)</th>
+                                <th>Durum</th>
+                            </tr>
+                        </thead>
+                        <tbody id="specializations-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="proj-card-view" class="view-panel">
+                <div class="kpi-grid" id="project-kpi-grid"></div>
+                <div class="card">
+                    <h3>🚀 Yatırım ve Geliştirme İlerleme İndeksi (Burn Rate Tracker)</h3>
+                    <div style="margin: 20px 0; background: #e2e8f0; height: 26px; border-radius: 30px; overflow: hidden; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);">
+                        <div style="background: linear-gradient(90deg, #2563eb 0%, #3b82f6 100%); width: 33%; height: 100%; color: white; text-align: center; font-size: 0.85rem; font-weight: 700; line-height: 26px;">
+                            Gelişim Durumu: %33
+                        </div>
+                    </div>
+                    <p style="color: #475569; font-size: 0.95rem; line-height: 1.7;">
+                        <strong>Girişim Analizi Özeti:</strong> MindCare ERP, psikolojik danışmanlık merkezlerinin yönetim operasyon maliyetlerini azaltmayı hedefleyen B2B SaaS iş modelidir. 
+                        Pazara çıkış stratejimize (Go-To-Market) göre MVP süreci 75 gün olarak planlanmıştır. Yazılım mimarisi, ölçeklenebilir bulut servisleri (SaaS Cloud Node) göz önüne alınarak kurgulanmıştır.
+                    </p>
+                </div>
+            </div>
+
+            <div id="proj-tasks-view" class="view-panel">
+                <div class="card">
+                    <h3>⏱️ Matematiksel Proje CPM (Critical Path Method) Optimizasyon Matrisi</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Kod</th>
+                                <th>Aşama/Görev Açıklaması</th>
+                                <th>Süre</th>
+                                <th>Planlanan Başlangıç</th>
+                                <th>Planlanan Bitiş</th>
+                                <th>ES / EF</th>
+                                <th>LS / LF</th>
+                                <th>Bolluk (Slack)</th>
+                                <th>Kritik Yol</th>
+                                <th>Mevcut Statü</th>
+                            </tr>
+                        </thead>
+                        <tbody id="project-tasks-tbody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="proj-team-view" class="view-panel">
+                <div class="card">
+                    <h3>👥 Yazılım ve Girişim Çekirdek Ekip Kadrosu</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Ad Soyad</th>
+                                <th>Organizasyonel Rolü</th>
+                                <th>Kurumsal İletişim</th>
+                                <th>Atanan İş Paketi</th>
+                                <th>Ayrılan Efor Kapasitesi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="project-team-tbody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="proj-budget-view" class="view-panel">
+                <div class="card">
+                    <h3>💰 Sermaye Log Defteri ve Finansal Giriş/Çıkış Hareketleri</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Referans No</th>
+                                <th>Valör Tarihi</th>
+                                <th>Finansal Kalem Açıklaması</th>
+                                <th>İşlem Kategorisi</th>
+                                <th style="text-align: right;">Net Tutar</th>
+                            </tr>
+                        </thead>
+                        <tbody id="project-budget-tbody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="sql-editor-view" class="view-panel">
+                <div class="sql-container">
+                    <div class="sql-sidebar">
+                        <h4>🗄️ TABLOLAR (RELATIONAL SCHEMAS)</h4>
+                        <ul class="tables-sidebar">
+                            <li class="tablo-item">📂 Appointments</li>
+                            <li class="tablo-item">📂 AppointmentTypes</li>
+                            <li class="tablo-item">📂 Branches</li>
+                            <li class="tablo-item">📂 Clients</li>
+                            <li class="tablo-item">📂 Payments</li>
+                            <li class="tablo-item">📂 Rooms</li>
+                            <li class="tablo-item">📂 Specializations</li>
+                            <li class="tablo-item">📂 Therapists</li>
+                        </ul>
+                    </div>
+                    <div class="sql-main">
+                        <textarea id="sql-code-input" class="sql-editor-textarea">SELECT * FROM Appointments INNER JOIN Clients ON Appointments.ClientId = Clients.Id;</textarea>
+                        <button id="btn-run-sql" class="btn-run">⚡ EXECUTE QUERY (F5)</button>
+                        <div class="results-zone">
+                            <div class="results-info">OUTPUT CONSOLE: RELATIONAL MATRIX</div>
+                            <div class="table-scroll">
+                                <table class="sql-results-table">
+                                    <thead id="sql-results-header"></tbody>
+                                    <tbody id="sql-results-body"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
     <script src="app.js"></script>
 </body>
 </html>

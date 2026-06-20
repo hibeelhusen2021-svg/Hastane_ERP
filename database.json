@@ -40,7 +40,7 @@
     {
       "id": "pat_104",
       "name": "Fatma Demir",
-      "complaint": "Mevsimsel enfeksiyona bağlı yüksek ateş ve dehidrasyon nedeniyle serum desteği.",
+      "complaint": "Mevsimsel enfeksiyona bağlı yüksek ateş og dehidrasyon nedeniyle serum desteği.",
       "doctorId": "doc_2",
       "roomNo": "D-305",
       "status": "yatis-verildi",
@@ -142,5 +142,17 @@
       "progressInc": 25,
       "description": "IV Demir sükroz infüzyonu uygulandı. Hastanın hemoglobin takibi yapılıyor, vital bulgular normal."
     }
+  ],
+  "ClinicalRecords": [
+    { "Id": 1, "AppointmentId": 201, "Diagnosis": "Akut Koroner Sendrom", "SessionNotes": "Hastanın göğüs ağrısı kontrol altına alındı. EKG takibi devam ediyor.", "Prescription": "Antiagregan ve Beta Bloker", "CreatedAt": "2026-06-20T11:30:00" },
+    { "Id": 2, "AppointmentId": 202, "Diagnosis": "Migren Durumu", "SessionNotes": "İzole odada takibi yapılıyor. Ağrı şiddeti azaldı.", "Prescription": "Triptan Grubu Analjezik", "CreatedAt": "2026-06-20T11:35:00" }
+  ],
+  "TherapistPayroll": [
+    { "Id": 1, "TherapistId": 1, "Period": "2026-06", "TotalSessions": 45, "GrossEarnings": 90000.00, "CommissionRate": 40.00, "NetPayout": 36000.00, "IsPaid": true, "PaymentDate": "2026-06-15" },
+    { "Id": 2, "TherapistId": 2, "Period": "2026-06", "TotalSessions": 60, "GrossEarnings": 120000.00, "CommissionRate": 40.00, "NetPayout": 48000.00, "IsPaid": false, "PaymentDate": null }
+  ],
+  "RoomAvailabilities": [
+    { "Id": 1, "RoomId": 201, "DayOfWeek": 1, "StartTime": "08:00:00", "EndTime": "16:00:00", "IsActive": true },
+    { "Id": 2, "RoomId": 104, "DayOfWeek": 2, "StartTime": "09:00:00", "EndTime": "17:00:00", "IsActive": true }
   ]
 }
